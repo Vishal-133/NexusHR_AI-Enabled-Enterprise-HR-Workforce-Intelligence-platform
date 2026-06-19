@@ -15,14 +15,14 @@
 
 NexusHR is an AI-enabled Enterprise Human Resource Management Platform designed to automate and streamline the complete employee lifecycle. The application integrates attendance management, payroll processing, employee performance tracking, workforce analytics, and AI-driven insights into a unified platform.
 
-The goal of NexusHR is to reduce manual HR operations, improve employee engagement, and provide data-driven decision-making capabilities for organizations through modern web technologies and intelligent automation.
+The goal of NexusHR is to reduce manual HR operations, improve employee engagement, and provide data-driven decision-making capabilities through modern web technologies and intelligent automation.
 
 ---
 
 ## 🎯 Project Objectives
 
 * Automate HR processes and workflows
-* Manage employee lifecycle efficiently
+* Manage the employee lifecycle efficiently
 * Simplify payroll and attendance management
 * Track employee performance and productivity
 * Generate workforce insights using AI
@@ -96,8 +96,8 @@ Spring Boot REST APIs
  ┌──────────┼──────────┐
  │          │          │
  ▼          ▼          ▼
-Employee  Payroll  Performance
-Module    Module   Module
+Employee   Payroll   Performance
+Module     Module     Module
             │
             ▼
         MySQL Database
@@ -112,7 +112,7 @@ Module    Module   Module
 
 ### Frontend
 
-* React.js
+* React 19
 * TypeScript
 * Tailwind CSS
 * Vite
@@ -123,17 +123,15 @@ Module    Module   Module
 ### Backend
 
 * Java 21
-* Spring Boot
+* Spring Boot 3.x
 * Spring Security
 * Spring Data JPA
-* REST APIs
 * JWT Authentication
 
 ### Database
 
 * MySQL 8.0
 * Hibernate ORM
-* Spring Data JPA
 
 ### AI Integration
 
@@ -142,8 +140,7 @@ Module    Module   Module
 
 ### Tools & DevOps
 
-* Git
-* GitHub
+* Git & GitHub
 * Docker
 * GitHub Actions
 
@@ -153,12 +150,15 @@ Module    Module   Module
 
 * JWT Authentication
 * Role-Based Access Control (RBAC)
-* Password Encryption
-* Secure API Endpoints
+
+  * ADMIN
+  * HR
+  * EMPLOYEE
+* Password Encryption (BCrypt)
+* Secure REST APIs
 * Input Validation
 * Session Management
 * Audit Logging
-* OWASP Security Best Practices
 
 ---
 
@@ -167,50 +167,42 @@ Module    Module   Module
 | Module                 | Description                          |
 | ---------------------- | ------------------------------------ |
 | Employee Management    | Manage employee records and profiles |
-| Attendance Management  | Track attendance and leaves          |
+| Attendance Management  | Track attendance and leave requests  |
 | Payroll Processing     | Automated payroll generation         |
-| Performance Management | Employee evaluation system           |
+| Performance Management | Employee evaluation and reviews      |
 | AI Analytics           | Workforce intelligence and insights  |
 | Dashboard              | Real-time HR analytics               |
-| Notifications          | System alerts and updates            |
-
----
-
-## 📊 Business Benefits
-
-* Reduces manual HR workload
-* Improves workforce productivity
-* Enhances employee engagement
-* Centralized employee data management
-* Faster payroll processing
-* Better workforce planning
-* Data-driven decision making
+| Notifications          | Alerts and system updates            |
 
 ---
 
 ## 📁 Project Structure
 
 ```bash
-NexusHR/
+NexusHR_AI-Enabled-Enterprise-HR-Workforce-Intelligence-platform/
 │
-├── frontend/
+├── Backend/
 │   ├── src/
-│   ├── components/
-│   ├── pages/
-│   ├── services/
-│   └── assets/
+│   │   └── main/java/com/EMPMANAGE/
+│   │       ├── Controller/
+│   │       ├── Service/
+│   │       ├── Repository/
+│   │       ├── DTO/
+│   │       ├── Entity/
+│   │       └── Security/
+│   │
+│   ├── pom.xml
+│   └── mvnw
 │
-├── backend/
-│   ├── controllers/
-│   ├── services/
-│   ├── repositories/
-│   ├── entities/
-│   ├── security/
-│   └── configuration/
-│
-├── database/
-│
-├── documentation/
+├── employee-management-ui/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   │
+│   ├── package.json
+│   └── vite.config.ts
 │
 └── README.md
 ```
@@ -219,52 +211,34 @@ NexusHR/
 
 ## ⚙️ Installation & Setup
 
-### Clone Repository
+### 1. Clone Repository
 
 ```bash
 git clone https://github.com/Vishal-133/NexusHR_AI-Enabled-Enterprise-HR-Workforce-Intelligence-platform.git
-```
 
-### Navigate to Project
-
-```bash
 cd NexusHR_AI-Enabled-Enterprise-HR-Workforce-Intelligence-platform
 ```
 
 ---
 
-### Backend Setup
+### 2. Database Setup (MySQL)
 
-```bash
-cd backend
+Create a database:
 
-mvn clean install
-
-mvn spring-boot:run
+```sql
+CREATE DATABASE employee_management;
 ```
 
----
-
-### Frontend Setup
-
-```bash
-cd frontend
-
-npm install
-
-npm run dev
-```
-
----
-
-### MySQL Configuration
-
-Update your `application.properties` file:
+Update:
 
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/nexushr
+Backend/src/main/resources/application.properties
+```
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/employee_management
 spring.datasource.username=root
-spring.datasource.password=your_password
+spring.datasource.password=your_mysql_password
 
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
@@ -273,89 +247,79 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 
 ---
 
-## 📸 Screenshots
+### 3. Run Backend
 
-Add your project screenshots here.
+```bash
+cd Backend
 
-### Login Page
+./mvnw clean install
 
-![Login](screenshots/login.png)
+./mvnw spring-boot:run
+```
 
-### Dashboard
+Backend Server:
 
-![Dashboard](screenshots/dashboard.png)
-
-### Employee Management
-
-![Employee Management](screenshots/employee-management.png)
-
-### Attendance Tracking
-
-![Attendance](screenshots/attendance.png)
-
-### Payroll Management
-
-![Payroll](screenshots/payroll.png)
-
-### AI Analytics Dashboard
-
-![AI Dashboard](screenshots/analytics.png)
+```text
+http://localhost:8080
+```
 
 ---
 
-## 🔄 Workflow
+### 4. Run Frontend
 
-1. Employee Registration
-2. Attendance Tracking
-3. Leave Management
-4. Payroll Processing
-5. Performance Evaluation
-6. AI-Based Workforce Analysis
-7. Reporting & Analytics
+```bash
+cd employee-management-ui
+
+npm install
+
+npm run dev
+```
+
+Frontend Server:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## 📸 Screenshots
+
+### Login Page
+
+*Add Screenshot Here*
+
+### Dashboard
+
+*Add Screenshot Here*
+
+### Employee Management
+
+*Add Screenshot Here*
+
+### Attendance Management
+
+*Add Screenshot Here*
+
+### Payroll Module
+
+*Add Screenshot Here*
+
+### AI Analytics Dashboard
+
+*Add Screenshot Here*
 
 ---
 
 ## 🔮 Future Enhancements
 
-* Mobile Application
-* Resume Screening System
-* Recruitment Management
-* Employee Sentiment Analysis
-* Advanced AI Recommendations
-* Multi-Tenant SaaS Support
+* Cross-Platform Mobile Application
+* AI Resume Screening System
+* Employee Sentiment Analysis using NLP
 * Biometric Attendance Integration
-* Advanced Workforce Forecasting
-
----
-
-## 🧪 Testing
-
-```bash
-mvn test
-```
-
----
-
-## 📈 Performance Goals
-
-* High Availability
-* Secure Authentication
-* Real-Time Analytics
-* Scalable Architecture
-* Responsive User Interface
-* Enterprise-Level Security
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome.
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to your branch
-5. Open a Pull Request
+* Advanced Predictive Attrition Models
+* Chatbot-based HR Assistant
+* Multi-Tenant Enterprise Support
 
 ---
 
@@ -363,22 +327,48 @@ Contributions are welcome.
 
 ### Vishal
 
-M.Tech Software Engineering
-VIT Vellore
+**Education:** M.Tech Software Engineering, VIT Vellore
 
-GitHub: https://github.com/Vishal-133
+**GitHub:** https://github.com/Vishal-133
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome.
+
+1. Fork the repository
+2. Create a feature branch
+
+```bash
+git checkout -b feature/new-feature
+```
+
+3. Commit your changes
+
+```bash
+git commit -m "Add new feature"
+```
+
+4. Push the branch
+
+```bash
+git push origin feature/new-feature
+```
+
+5. Open a Pull Request
 
 ---
 
 ## 📜 License
 
-This project is developed for educational, portfolio, internship, and learning purposes.
+This project is licensed under the MIT License.
 
 ---
 
 ## ⭐ Support
 
-If you like this project, please give it a ⭐ on GitHub and support the development.
+If you found this project useful, consider giving it a ⭐ on GitHub.
 
 ---
 
